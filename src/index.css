@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "montseratt", sans-serif;
+}
+
+.app {
+  background-image: url("./assets/cold.jpg");
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.6s ease-in-out;
+}
+
+.app.warm {
+  background-image: url("./assets/hot.jpg");
+  transition: 0.6s ease-in-out;
+}
+
+main {
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.75)
+  );
+  padding: 25px;
+}
+.search-box {
+  width: 100%;
+  margin: 0 0 75px;
+}
+.search-box .search-bar {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px 0px 10px 0px;
+
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+
+  color: #313131;
+  font-size: 20px;
+
+  transition: 0.4s ease;
+}
+
+.search-box .search-bar:focus {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+.location-box .location {
+  color: #fff;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+.location-box .date {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box {
+  text-align: center;
+}
+
+.weather-box .temp {
+  position: relative;
+  display: inline-block;
+  margin: 30px auto;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+
+  padding: 15px 25px;
+
+  color: rgb(252, 255, 240);
+  font-size: 102px;
+  font-weight: 900;
+
+  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+  text-align: center;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.weather-box .weather {
+  color: rgb(246, 255, 240);
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 3px 3px re;
+}
+.weather-box .clouds {
+  height: 200px;
+  width: auto;
+  position: relative;
+
+  background-image: url("./assets/clouds2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  transition: 0.6s ease-in;
+}
+.weather-box .clear {
+  height: 100px;
+  width: auto;
+  position: relative;
+
+  background-image: url("./assets/sun.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  transition: 0.6s ease-in;
+}
+.weather-box .mist {
+  height: 100px;
+  width: auto;
+  position: relative;
+
+  background-image: url("./assets/fog.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  transition: 0.6s ease-in;
+}
+
+/***************************************/
+
+.search-box {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-block;
+
+  margin: 25px 0 25px 25px;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
+/**
+ * The "shine" element
+ */
+
+.search-box:after {
+  content: "";
+  position: absolute;
+  top: -110%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(30deg);
+
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Hover state - trigger effect */
+
+.search-box:hover:after {
+  opacity: 1;
+  top: -30%;
+  left: -0%;
+  transition-property: left, top, opacity;
+  transition-duration: 1s, 1s, 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Active state */
+
+.search-box:active:after {
+  opacity: 0;
+}
