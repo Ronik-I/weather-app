@@ -31,33 +31,33 @@ function App() {
 
 
     let s = weather.timezone;
-    let h = (s/3600);
-    let m = (s -(3600*h))/60;
+    let h = Math.floor((s/3600));
+    let m = Math.floor((s -(3600*h))/60);
 
     let minute = d.getMinutes()-30+m;
     let hours = d.getHours() - 5 + h;
 
 
     if (minute < 0){
-      h--;
+      hours--;
       minute = 60 + minute;
     }
-    if (h<0){
-      h = 24 + h;
+    if (hours<0){
+      hours = 24 + hours;
     }
 
     let time =hours + ':' + minute;
 
-    return `${day} ${date} ${month} ${year} ${time}`
+    return `${time} ${day} ${date} ${month} ${year} `
 
   }
   const currTime=(d) => {
     let hrs = d.getHours();
     let s = weather.timezone;
-    let h = (s/3600);
+    let h = Math.floor(s/3600);
     hrs = hrs - 5 + h;
     if (hrs<0){
-      hrs = 24 + h;
+      hrs = 24 + hrs;
     }
     return `${hrs}`
   }
@@ -81,7 +81,7 @@ function App() {
     
 }
 const getBackground = (temp,time) => {
-  if(temp<=17)
+  if(temp<=20)
   {
     if(time>=6 && time<18)
      return 'app';
@@ -132,7 +132,7 @@ const getBackground = (temp,time) => {
         
         </div>
         
-        ) :('')}
+        ) :(<div id= "notfound">City Not Found</div>)}
       </main>
     </div>
   );
