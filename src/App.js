@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 const api ={
-  key: "keyhidden",
+  key: "7a747bf83ad8f3a20ecd55111a6dc295",
   base: "https://api.openweathermap.org/data/2.5/"
 }
 function App() {
@@ -97,7 +97,9 @@ const getBackground = (temp,time) => {
 }
   return (
     <div className={
-      getBackground(Math.round(weather.main.temp),currTime(new Date()))
+      (typeof weather.main != "undefined")?(     
+      getBackground(Math.round(weather.main.temp),currTime(new Date())))
+      :('app')
     }>
       <main>
         <div className="search-box">
