@@ -15,8 +15,16 @@ body {
   transition: 0.6s ease-in-out;
 }
 
-.app.warm {
+.app.warmday {
   background-image: url("./assets/hot.jpg");
+  transition: 0.6s ease-in-out;
+}
+.app.warmnight {
+  background-image: url("./assets/warmnight.jpg");
+  transition: 0.6s ease-in-out;
+}
+.app.coldnight {
+  background-image: url("./assets/coldnight.jpg");
   transition: 0.6s ease-in-out;
 }
 
@@ -35,8 +43,10 @@ main {
 }
 .search-box .search-bar {
   display: block;
+  position: relative;
+
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   appearance: none;
   background: none;
   border: none;
@@ -50,7 +60,7 @@ main {
   color: #313131;
   font-size: 20px;
 
-  transition: 0.4s ease;
+  transition: 0.6s ease;
 }
 
 .search-box .search-bar:focus {
@@ -94,6 +104,7 @@ main {
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
   text-align: center;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+  transform: scale(0.8);
 }
 
 .weather-box .weather {
@@ -107,22 +118,51 @@ main {
   width: auto;
   position: relative;
 
-  background-image: url("./assets/clouds2.png");
+  background-image: url("./assets/clouds.gif");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
-  transition: 0.6s ease-in;
+  /*transition: 0.6s ease-in;*/
+
+  animation: animateicon 3s infinite;
 }
+
 .weather-box .clear {
   height: 100px;
   width: auto;
   position: relative;
 
-  background-image: url("./assets/sun.png");
+  background-image: url("./assets/sun2.gif");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
   transition: 0.6s ease-in;
+
+  animation: animateicon 3s infinite;
+}
+&::before {
+  content: "";
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 50%;
+}
+&::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 50%;
+}
+
+&::before {
+  left: -25px;
+}
+
+&::after {
+  top: -25px;
 }
 .weather-box .mist {
   height: 100px;
@@ -134,18 +174,52 @@ main {
   background-size: contain;
   background-position: bottom;
   transition: 0.6s ease-in;
+  animation: animateicon 3s infinite;
+}
+.weather-box .rain {
+  height: 200px;
+  width: auto;
+  position: relative;
+
+  background-image: url("./assets/rain2.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  transition: 0.6s ease-in;
+  animation: animateicon 3s infinite;
+}
+.weather-box .moon {
+  height: 130px;
+  width: auto;
+  position: relative;
+
+  background-image: url("./assets/moon.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  transition: 0.6s ease-in;
+  animation: animateicon 3s infinite;
 }
 
 /***************************************/
+@keyframes animateicon {
+  0% {
+    transform: scale(0.9);
+  }
 
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
 .search-box {
   position: relative;
   overflow: hidden;
 
   display: inline-block;
 
-  margin: 25px 0 25px 25px;
-  border-radius: 5px;
   color: #fff;
   text-decoration: none;
   text-align: center;

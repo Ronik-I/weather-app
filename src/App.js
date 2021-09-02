@@ -18,6 +18,7 @@ function App() {
         });
     }
   }
+  
 
   const dateBuilder=(d) => {
     let months = ["Jnauary", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -28,12 +29,76 @@ function App() {
     let month = months[d.getMonth()];
     let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`
+
+    let s = weather.timezone;
+    let h = (s/3600);
+    let m = (s -(3600*h))/60;
+
+    let minute = d.getMinutes()-30+m;
+    let hours = d.getHours() - 5 + h;
+
+
+    if (minute < 0){
+      h--;
+      minute = 60 + minute;
+    }
+    if (h<0){
+      h = 24 + h;
+    }
+
+    let time =hours + ':' + minute;
+
+    return `${day} ${date} ${month} ${year} ${time}`
 
   }
+  const currTime=(d) => {
+    let hrs = d.getHours();
+    let s = weather.timezone;
+    let h = (s/3600);
+    hrs = hrs - 5 + h;
+    if (hrs<0){
+      hrs = 24 + h;
+    }
+    return `${hrs}`
+  }
+  const getBackgroundicon = (weather) => {
+    if (weather === 'Clouds') {
+        return "clouds";
+    }
+    else if (weather === 'Clear') {
+        if(currTime(new Date())>=6 && currTime(new Date())<=18)
+        return "clear";
+        else
+        return "moon";
+    }
+    else if (weather === 'Mist') {
+      return "mist";
+    }
+    else if (weather === 'Rain') {
+      return "rain";
+    }
+    return "clouds";
+    
+}
+const getBackground = (temp,time) => {
+  if(temp<=17)
+  {
+    if(time>=6 && time<18)
+     return 'app';
+    else
+     return 'app coldnight';
+  }
+  else{
+    if(time>=6 && time<18)
+     return 'app warmday';
+    else
+     return 'app warmnight';
+  }
+}
   return (
     <div className={
-      (typeof weather.main != "undefined") ? ((weather.main.temp >20)? 'app warm' :'app') : 'app'}>
+      getBackground(Math.round(weather.main.temp),currTime(new Date()))
+    }>
       <main>
         <div className="search-box">
           <input 
@@ -57,7 +122,7 @@ function App() {
           </div>
           <div className="weather">{weather.weather[0].main}</div>
           <div className={
-          (typeof weather.weather[0].main != "undefined") ? ((weather.weather[0].main === 'Clear')? 'clear' :'clouds') : 'mist'}>
+          getBackgroundicon(weather.weather[0].main)}>
             
           </div>
 
